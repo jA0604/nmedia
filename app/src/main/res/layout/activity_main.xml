@@ -50,7 +50,7 @@
         app:srcCompat="@drawable/ic_baseline_more_vert_24" />
 
     <TextView
-        android:id="@+id/tv_post_text"
+        android:id="@+id/tv_post_content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/text_post"
@@ -66,14 +66,15 @@
         android:layout_height="24dp"
         android:layout_margin="@dimen/app_margin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_post_text"
-        app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+        app:layout_constraintTop_toBottomOf="@id/tv_post_content"
+        tools:srcCompat="@drawable/ic_baseline_favorite_border_24" />
 
     <TextView
         android:id="@+id/tv_like_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/demo_count_like"
+        tools:text="@string/demo_count_like"
+        android:layout_marginStart="@dimen/look_margin"
         app:layout_constraintStart_toEndOf="@id/iv_like"
         app:layout_constraintTop_toTopOf="@id/iv_like"
         app:layout_constraintBottom_toBottomOf="@id/iv_like"
@@ -93,7 +94,8 @@
         android:id="@+id/tv_share_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/demo_count_share"
+        tools:text="@string/demo_count_share"
+        android:layout_marginStart="@dimen/look_margin"
         app:layout_constraintStart_toEndOf="@id/iv_share"
         app:layout_constraintTop_toTopOf="@id/iv_share"
         app:layout_constraintBottom_toBottomOf="@id/iv_share"
