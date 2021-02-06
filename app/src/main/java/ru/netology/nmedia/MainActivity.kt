@@ -49,6 +49,16 @@ class MainActivity : AppCompatActivity() {
             setLikeDislike()
         }
 
+        maBinding.root.setOnClickListener {
+            if (post.likedByMe) post.likeCount++ else post.dislikeCount++
+            setLikeDislike()
+        }
+
+        maBinding.ivAvatar.setOnClickListener {
+            if (post.likedByMe) post.likeCount++ else post.dislikeCount++
+            setLikeDislike()
+        }
+
         maBinding.ivShare.setOnClickListener {
             post.shareCount++
             setShare()
