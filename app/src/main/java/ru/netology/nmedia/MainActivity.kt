@@ -7,6 +7,8 @@ import ru.netology.nmedia.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     lateinit var maBinding: ActivityMainBinding
     lateinit var post: Post
+    var likeCount: Int = 0
+    var shareCount: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,29 +40,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun event() {
-        maBinding.ivLike.setOnLongClickListener {
-            post.likedByMe = !post.likedByMe
-            setLikeDislike()
-            return@setOnLongClickListener true
-        }
-
         maBinding.ivLike.setOnClickListener {
-            if (post.likedByMe) post.likeCount++ else post.dislikeCount++
+            if (post.likedByMe) likeCount++ else if (likeCount > 0) likeCount-- else 0
             setLikeDislike()
+            post.likedByMe = !post.likedByMe
         }
 
         maBinding.root.setOnClickListener {
-            if (post.likedByMe) post.likeCount++ else post.dislikeCount++
+            if (post.likedByMe) likeCount++ else if (likeCount > 0) likeCount-- else 0
             setLikeDislike()
         }
 
         maBinding.ivAvatar.setOnClickListener {
-            if (post.likedByMe) post.likeCount++ else post.dislikeCount++
+            if (post.likedByMe) likeCount++ else if (likeCount > 0) likeCount-- else 0
             setLikeDislike()
         }
 
         maBinding.ivShare.setOnClickListener {
-            post.shareCount++
+            shareCount++
             setShare()
         }
 
@@ -68,12 +65,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setLikeDislike() {
         maBinding.ivLike.setImageResource(if (post.likedByMe) R.drawable.ic_baseline_thumb_up_24 else R.drawable.ic_baseline_thumb_down_24)
-        maBinding.tvLikeCount.setText(if (post.likedByMe) numberToK(post.likeCount) else numberToK(post.dislikeCount))
+        maBinding.tvLikeCount.setText(numberToK(likeCount))
 
     }
 
     private fun setShare() {
-        maBinding.tvShareCount.setText(numberToK(post.shareCount))
+        maBinding.tvShareCount.setText(numberToK(shareCount))
     }
 
 }
