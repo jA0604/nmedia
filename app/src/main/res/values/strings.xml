@@ -6,4 +6,8 @@
     <string name="demo_count_like">10</string>
     <string name="demo_count_share">5</string>
     <string name="demo_count_look">1.2K</string>
+    <string name="menu_remove">Delete</string>
+    <string name="menu_edit">Edit</string>
+    <string name="enter_content">Enter content</string>
+    <string name="error_emty_content">The text should not be empty</string>
 </resources>

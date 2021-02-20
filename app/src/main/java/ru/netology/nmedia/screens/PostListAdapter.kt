@@ -2,6 +2,7 @@ package ru.netology.nmedia.screens
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,9 @@ import ru.netology.nmedia.model.Post
 
 class PostListAdapter (
         private val onPostLiked: (Post) -> Unit,
-        private val onPostShared: (Post) -> Unit
+        private val onPostShared: (Post) -> Unit,
+        private val onPostRemoved: (Post) -> Unit,
+        private val onPostEdited: (Post) -> Unit
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
     var posts: List<Post> = emptyList()
@@ -20,7 +23,9 @@ class PostListAdapter (
         val itemPostBinding = ItemPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PostViewHolder(binding = itemPostBinding,
                               onPostLiked = onPostLiked,
-                              onPostShared = onPostShared)
+                              onPostShared = onPostShared,
+                              onPostRemoved = onPostRemoved,
+                              onPostEdited = onPostEdited)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
@@ -33,7 +38,9 @@ class PostListAdapter (
 class PostViewHolder (
     private val binding: ItemPostBinding,
     private val onPostLiked: (Post) -> Unit,
-    private val onPostShared: (Post) -> Unit
+    private val onPostShared: (Post) -> Unit,
+    private val onPostRemoved: (Post) -> Unit,
+    private val onPostEdited: (Post) -> Unit
         ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind (post: Post) {
@@ -52,6 +59,26 @@ class PostViewHolder (
             tvShareCount.setText(post.shares.toString())
             ivShare.setOnClickListener {
                 onPostShared(post)
+            }
+
+            ivMore.setOnClickListener {
+                val popupMenu = androidx.appcompat.widget.PopupMenu(it.context, it)
+                popupMenu.inflate(R.menu.menu_post_options)
+                popupMenu.setOnMenuItemClickListener {
+                    when(it.itemId) {
+                        R.id.edit -> {
+                            onPostEdited(post)
+                            true
+                        }
+                        R.id.remove -> {
+                            onPostRemoved(post)
+                            true
+                        }
+                        else -> false
+                    }
+                }
+                popupMenu.show()
+
             }
         }
     }
