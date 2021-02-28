@@ -3,4 +3,5 @@
     <dimen name="post_avatar_size">48dp</dimen>
     <dimen name="app_margin">16dp</dimen>
     <dimen name="look_margin">8dp</dimen>
+    <dimen name="icon_button_min_size">48dp</dimen>
 </resources>

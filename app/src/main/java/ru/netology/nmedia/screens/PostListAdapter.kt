@@ -50,13 +50,13 @@ class PostViewHolder (
             tvPostDate.setText(post.datePublished)
             tvPostContent.setText(post.content)
 
-            ivLike.setImageResource(if (post.likedByMe) R.drawable.ic_baseline_thumb_up_24 else R.drawable.ic_baseline_thumb_down_24)
-            tvLikeCount.setText(post.likes.toString())
+            ivLike.isChecked = post.likedByMe
+            ivLike.text = post.likes.toString()
             ivLike.setOnClickListener {
                 onPostLiked(post)
             }
 
-            tvShareCount.setText(post.shares.toString())
+            ivShare.text = "${post.shares}"
             ivShare.setOnClickListener {
                 onPostShared(post)
             }

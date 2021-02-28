@@ -54,6 +54,7 @@ dependencies {
     def lifecycle_version = "2.2.0"
     def arch_version = "2.1.0"
     def activity_version = "1.1.0"
+    def mdc_version = "1.2.1"
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
@@ -72,4 +73,7 @@ dependencies {
 //    implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
 
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.9'
+
+    // Material Design
+    implementation "com.google.android.material:material:$mdc_version"
 }

@@ -69,18 +69,16 @@ class PostRepository : RepoPost {
 
     override fun likeById(id: Long) {
         mutableLiveData.value = mutableLiveData.value?.map {
-            if (it.id == id) {
-                var likes = if (it.likedByMe) it.likes.inc() else if (it.likes > 0) it.likes.dec() else 0
-                it.copy(likedByMe = !it.likedByMe, likes = likes)
-            } else it
+            if (it.id != id) it else it.copy (
+                    likedByMe = !it.likedByMe,
+                    likes = if (it.likedByMe) it.likes.dec() else it.likes.inc()
+            )
         }
     }
 
     override fun shareById(id: Long) {
         mutableLiveData.value = mutableLiveData.value?.map{
-            if (it.id == id) {
-                it.copy(shares = it.shares.inc())
-            } else it
+            if (it.id != id) it else it.copy(shares = it.shares.inc())
         }
     }
 
