@@ -10,7 +10,7 @@
     <string name="menu_edit">Edit</string>
     <string name="enter_content">Enter content</string>
     <string name="error_emty_content">The text should not be empty</string>
-    <string name="like">Like</string>
-    <string name="share">Share</string>
-    <string name="options">Options</string>
+    <string name="like" translatable="false">Like</string>
+    <string name="share" translatable="false">Share</string>
+    <string name="options" translatable="false">Options</string>
 </resources>
