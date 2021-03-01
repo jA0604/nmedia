@@ -13,4 +13,5 @@
     <string name="like" translatable="false">Like</string>
     <string name="share" translatable="false">Share</string>
     <string name="options" translatable="false">Options</string>
+    <string name="look" translatable="false">Look </string>
 </resources>

@@ -88,22 +88,15 @@
         android:contentDescription="@string/share"
         style="@style/shareButtonStyle"/>
 
-    <ImageView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/iv_look"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_margin="@dimen/look_margin"
-        app:layout_constraintBottom_toBottomOf="@id/iv_like"
-        app:layout_constraintEnd_toStartOf="@+id/tv_look_count"
-        app:layout_constraintTop_toTopOf="@id/iv_like"
-        app:srcCompat="@drawable/ic_baseline_visibility_24" />
-
-    <TextView
-        android:id="@+id/tv_look_count"
+        style="@style/lookButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/app_margin"
+        android:layout_marginEnd="@dimen/app_margin"
+        android:contentDescription="@string/look"
         android:text="@string/demo_count_look"
+        app:icon="@drawable/ic_baseline_visibility_24"
         app:layout_constraintBottom_toBottomOf="@id/iv_like"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/iv_like" />
