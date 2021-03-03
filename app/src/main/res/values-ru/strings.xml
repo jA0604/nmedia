@@ -4,11 +4,10 @@
     <string name="author">Нетология. Университет интернет-профессий будущего</string>
     <string name="date_post">21 may 18:36</string>
     <string name="text_post">Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb</string>
-    <string name="demo_count_like">10</string>
-    <string name="demo_count_share">5</string>
     <string name="demo_count_look">1</string>
     <string name="menu_remove">Удалить</string>
     <string name="menu_edit">Редактировать</string>
     <string name="enter_content">Введите текст</string>
-    <string name="error_emty_content">Текст не должен быть пустым</string>
+    <string name="toolbar_title">НМедиа</string>
+    <string name="tb_edit_post_subtitle">Вводд/Редактирование Поста</string>
 </resources>

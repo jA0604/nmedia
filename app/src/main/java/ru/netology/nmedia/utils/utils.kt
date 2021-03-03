@@ -21,3 +21,8 @@ object AndroidUtils {
         inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
     }
 }
+
+object RequestCode {
+    const val EDIT_POST = 1001
+    const val ADD_POST = 1002
+}

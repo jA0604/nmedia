@@ -23,13 +23,11 @@ class PostViewModel : ViewModel() {
     val contentEdit = MutableLiveData(blankPost)
     val data: LiveData<List<Post>>
         get() = repository.listLiveData
-    fun likeById(id: Long) {
-        repository.likeById(id)
-    }
-    fun shareById(id: Long) {
-        repository.shareById(id)
-    }
+
+    fun likeById(id: Long) = repository.likeById(id)
+    fun shareById(id: Long) = repository.shareById(id)
     fun removeById(id: Long) = repository.removeById(id)
+
     fun changeContent(content: String) {
         val text = content.trim()
         if (text == contentEdit.value?.content) return
@@ -48,6 +46,8 @@ class PostViewModel : ViewModel() {
             if (it.id == 0L) repository.create(it)
             else repository.update(it)
         }
+        contentEdit.value = blankPost
+
     }
 
     fun edit(post: Post) {

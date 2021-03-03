@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.MainActivity">
+    tools:context=".screens.EditPostActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tb_main"
+        android:id="@+id/tb_edit_post"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimaryVariant"
@@ -16,26 +16,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_post_conteiner"
+    <EditText
+        android:id="@+id/ed_content_post"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tb_main"
-        tools:listitem="@layout/item_post" />
+        android:layout_marginTop="@dimen/app_margin"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:gravity="top|start"
+        android:hint="@string/enter_content"
+        android:inputType="text|textMultiLine"
+        android:singleLine="false"
+        app:layout_constraintBottom_toTopOf="@id/fab_save"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tb_edit_post" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add_post"
+        android:id="@+id/fab_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/app_margin"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add_24"
-        tools:layout_editor_absoluteX="343dp"
-        tools:layout_editor_absoluteY="678dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_save_24"
+        tools:layout_editor_absoluteX="185dp"
+        tools:layout_editor_absoluteY="623dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
