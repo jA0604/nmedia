@@ -65,16 +65,15 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/iv_like"
+        style="@style/likeCheckBoxStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/app_margin"
-        android:layout_marginTop="@dimen/look_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_post_content"
-        app:icon="@drawable/ic_like_24"
         android:checkable="true"
         android:contentDescription="@string/like"
-        style="@style/likeCheckBoxStyle"/>
+        app:icon="@drawable/ic_like_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_youtube" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/iv_share"
@@ -100,5 +99,15 @@
         app:layout_constraintBottom_toBottomOf="@id/iv_like"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/iv_like" />
+
+    <ImageView
+        android:id="@+id/iv_youtube"
+        android:layout_width="@dimen/video_width"
+        android:layout_height="@dimen/video_height"
+        android:layout_marginTop="@dimen/app_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_post_content"
+        app:srcCompat="@drawable/but_play_50" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

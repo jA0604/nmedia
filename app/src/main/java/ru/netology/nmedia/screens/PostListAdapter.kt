@@ -1,12 +1,16 @@
 package ru.netology.nmedia.screens
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
+import ru.netology.nmedia.RequestCode
 import ru.netology.nmedia.databinding.ItemPostBinding
 import ru.netology.nmedia.model.Post
 
@@ -14,7 +18,8 @@ class PostListAdapter (
         private val onPostLiked: (Post) -> Unit,
         private val onPostShared: (Post) -> Unit,
         private val onPostRemoved: (Post) -> Unit,
-        private val onPostEdited: (Post) -> Unit
+        private val onPostEdited: (Post) -> Unit,
+        private val onVideoPlay: () -> Unit
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
     var posts: List<Post> = emptyList()
@@ -25,7 +30,9 @@ class PostListAdapter (
                               onPostLiked = onPostLiked,
                               onPostShared = onPostShared,
                               onPostRemoved = onPostRemoved,
-                              onPostEdited = onPostEdited)
+                              onPostEdited = onPostEdited,
+                              onVideoPlay = onVideoPlay
+        )
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
@@ -40,7 +47,8 @@ class PostViewHolder (
     private val onPostLiked: (Post) -> Unit,
     private val onPostShared: (Post) -> Unit,
     private val onPostRemoved: (Post) -> Unit,
-    private val onPostEdited: (Post) -> Unit
+    private val onPostEdited: (Post) -> Unit,
+    private val onVideoPlay: () -> Unit
         ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind (post: Post) {
@@ -79,6 +87,10 @@ class PostViewHolder (
                 }
                 popupMenu.show()
 
+            }
+
+            ivYoutube.setOnClickListener {
+                onVideoPlay()
             }
         }
     }

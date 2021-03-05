@@ -2,6 +2,7 @@ package ru.netology.nmedia.screens
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -31,9 +32,10 @@ class MainActivity : AppCompatActivity() {
             onPostLiked = { maViewModel.likeById(it.id) },
             onPostShared = { maViewModel.shareById(it.id) },
             onPostRemoved = { maViewModel.removeById(it.id) },
-            onPostEdited = { maViewModel.edit(it) }
-        )
+            onPostEdited = { maViewModel.edit(it) },
+            onVideoPlay = { videoPlay() }
 
+        )
 
         maBinding.rvPostConteiner.adapter = adapter
         maViewModel.data.observe(this@MainActivity) {
@@ -77,5 +79,13 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    fun videoPlay() {
+        val intent = Intent().apply {
+            action = Intent.ACTION_VIEW
+            data = Uri.parse("https://www.youtube.com/watch?v=3EP2IL-gyNc")
+        }
+        startActivity(intent)
     }
 }

@@ -4,4 +4,6 @@
     <dimen name="app_margin">16dp</dimen>
     <dimen name="look_margin">8dp</dimen>
     <dimen name="icon_button_min_size">48dp</dimen>
+    <dimen name="video_width">120dp</dimen>
+    <dimen name="video_height">80dp</dimen>
 </resources>
