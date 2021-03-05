@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.R
 import ru.netology.nmedia.RequestCode
 import ru.netology.nmedia.databinding.ActivityMainBinding
+import ru.netology.nmedia.model.Post
 import ru.netology.nmedia.viewmodel.PostViewModel
 import java.util.*
 
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             onPostShared = { maViewModel.shareById(it.id) },
             onPostRemoved = { maViewModel.removeById(it.id) },
             onPostEdited = { maViewModel.edit(it) },
-            onVideoPlay = { videoPlay() }
+            onVideoPlay = { videoPlay(it) }
 
         )
 
@@ -81,10 +82,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun videoPlay() {
+    fun videoPlay(post: Post) {
         val intent = Intent().apply {
             action = Intent.ACTION_VIEW
-            data = Uri.parse("https://www.youtube.com/watch?v=3EP2IL-gyNc")
+            data = Uri.parse(post.linkToVideo)
         }
         startActivity(intent)
     }

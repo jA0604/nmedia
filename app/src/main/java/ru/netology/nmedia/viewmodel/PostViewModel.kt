@@ -13,10 +13,10 @@ import java.time.format.DateTimeFormatter
 class PostViewModel : ViewModel() {
 
     private val blankPost = Post(
-            id = 0L,
-            author = "",
-            datePublished = "",
-            content = ""
+        id = 0L,
+        author = "",
+        datePublished = "",
+        content = ""
     )
 
     private val repository = PostRepository()
@@ -32,13 +32,15 @@ class PostViewModel : ViewModel() {
         val text = content.trim()
         if (text == contentEdit.value?.content) return
 
-        val formatter = DateTimeFormatter.ofPattern("dd.MM.YYYY HH:mm")
-        val currentDate = Instant.now().atZone(ZoneId.systemDefault())
-        contentEdit.value = contentEdit.value?.copy(
+        if (contentEdit.value?.id == 0L) {
+            val formatter = DateTimeFormatter.ofPattern("dd.MM.YYYY HH:mm")
+            val currentDate = Instant.now().atZone(ZoneId.systemDefault())
+            contentEdit.value = contentEdit.value?.copy(
                 author = "New Author", //потом нужно убрать хардкод
                 datePublished = formatter.format(currentDate),
                 content = text
-        )
+            )
+        } else contentEdit.value = contentEdit.value?.copy(content = text)
     }
 
     fun save() {

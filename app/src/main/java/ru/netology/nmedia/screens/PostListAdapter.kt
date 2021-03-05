@@ -3,6 +3,7 @@ package ru.netology.nmedia.screens
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.core.content.ContextCompat.startActivity
@@ -14,24 +15,26 @@ import ru.netology.nmedia.RequestCode
 import ru.netology.nmedia.databinding.ItemPostBinding
 import ru.netology.nmedia.model.Post
 
-class PostListAdapter (
-        private val onPostLiked: (Post) -> Unit,
-        private val onPostShared: (Post) -> Unit,
-        private val onPostRemoved: (Post) -> Unit,
-        private val onPostEdited: (Post) -> Unit,
-        private val onVideoPlay: () -> Unit
+class PostListAdapter(
+    private val onPostLiked: (Post) -> Unit,
+    private val onPostShared: (Post) -> Unit,
+    private val onPostRemoved: (Post) -> Unit,
+    private val onPostEdited: (Post) -> Unit,
+    private val onVideoPlay: (Post) -> Unit
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
     var posts: List<Post> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-        val itemPostBinding = ItemPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostViewHolder(binding = itemPostBinding,
-                              onPostLiked = onPostLiked,
-                              onPostShared = onPostShared,
-                              onPostRemoved = onPostRemoved,
-                              onPostEdited = onPostEdited,
-                              onVideoPlay = onVideoPlay
+        val itemPostBinding =
+            ItemPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return PostViewHolder(
+            binding = itemPostBinding,
+            onPostLiked = onPostLiked,
+            onPostShared = onPostShared,
+            onPostRemoved = onPostRemoved,
+            onPostEdited = onPostEdited,
+            onVideoPlay = onVideoPlay
         )
     }
 
@@ -39,24 +42,25 @@ class PostListAdapter (
         val post = getItem(position)
         holder.bind(post)
     }
-
 }
 
-class PostViewHolder (
+class PostViewHolder(
     private val binding: ItemPostBinding,
     private val onPostLiked: (Post) -> Unit,
     private val onPostShared: (Post) -> Unit,
     private val onPostRemoved: (Post) -> Unit,
     private val onPostEdited: (Post) -> Unit,
-    private val onVideoPlay: () -> Unit
-        ) : RecyclerView.ViewHolder(binding.root) {
+    private val onVideoPlay: (Post) -> Unit
+) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind (post: Post) {
+    fun bind(post: Post) {
         with(binding) {
             ivAvatar.setImageResource(R.drawable.ic_netology_original)
             tvAuthor.setText(post.author)
             tvPostDate.setText(post.datePublished)
             tvPostContent.setText(post.content)
+
+            ivYoutube.visibility = if (post.linkToVideo.isBlank()) View.GONE else View.VISIBLE
 
             ivLike.isChecked = post.likedByMe
             ivLike.text = post.likes.toString()
@@ -73,7 +77,7 @@ class PostViewHolder (
                 val popupMenu = androidx.appcompat.widget.PopupMenu(it.context, it)
                 popupMenu.inflate(R.menu.menu_post_options)
                 popupMenu.setOnMenuItemClickListener {
-                    when(it.itemId) {
+                    when (it.itemId) {
                         R.id.edit -> {
                             onPostEdited(post)
                             true
@@ -90,13 +94,13 @@ class PostViewHolder (
             }
 
             ivYoutube.setOnClickListener {
-                onVideoPlay()
+                onVideoPlay(post)
             }
         }
     }
 }
 
-class PostDiffCallback: DiffUtil.ItemCallback<Post> () {
+class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
 
     override fun areItemsTheSame(oldItem: Post, newItem: Post): Boolean {
         return oldItem.id == newItem.id

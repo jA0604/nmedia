@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,45 +11,45 @@
         android:layout_height="@dimen/post_avatar_size"
         android:layout_marginStart="@dimen/app_margin"
         android:layout_marginTop="@dimen/app_margin"
-        app:srcCompat="@drawable/ic_netology_original"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_netology_original" />
 
     <TextView
         android:id="@+id/tv_author"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/author"
-        android:maxLines="1"
-        android:ellipsize="end"
         android:layout_marginStart="@dimen/app_margin"
         android:layout_marginEnd="@dimen/app_margin"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/author"
         app:layout_constraintBottom_toTopOf="@+id/tv_post_date"
+        app:layout_constraintEnd_toStartOf="@+id/iv_more"
         app:layout_constraintStart_toEndOf="@id/iv_avatar"
-        app:layout_constraintTop_toTopOf="@id/iv_avatar"
-        app:layout_constraintEnd_toStartOf="@+id/iv_more"/>
+        app:layout_constraintTop_toTopOf="@id/iv_avatar" />
 
     <TextView
         android:id="@+id/tv_post_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/date_post"
         android:layout_marginStart="@dimen/app_margin"
+        android:text="@string/date_post"
         app:layout_constraintBottom_toBottomOf="@id/iv_avatar"
         app:layout_constraintStart_toEndOf="@id/iv_avatar"
         app:layout_constraintTop_toBottomOf="@+id/tv_author" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/iv_more"
+        style="@style/optionsButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/app_margin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/iv_avatar"
-        app:layout_constraintTop_toTopOf="@id/iv_avatar"
-        app:icon="@drawable/ic_baseline_more_vert_24"
         android:contentDescription="@string/options"
-        style="@style/optionsButtonStyle"/>
+        app:icon="@drawable/ic_baseline_more_vert_24"
+        app:layout_constraintBottom_toBottomOf="@id/iv_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_avatar" />
 
     <TextView
         android:id="@+id/tv_post_content"
@@ -62,6 +61,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_post_date" />
+
+    <ImageView
+        android:id="@+id/iv_youtube"
+        android:layout_width="@dimen/video_width"
+        android:layout_height="@dimen/video_height"
+        android:layout_marginTop="@dimen/app_margin"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_post_content"
+        app:srcCompat="@drawable/but_play_50" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/iv_like"
@@ -77,15 +87,15 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/iv_share"
+        style="@style/shareButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/app_margin"
-        app:layout_constraintStart_toEndOf="@id/iv_like"
-        app:layout_constraintTop_toTopOf="@id/iv_like"
-        app:layout_constraintBottom_toBottomOf="@id/iv_like"
-        app:icon="@drawable/ic_baseline_share_24"
         android:contentDescription="@string/share"
-        style="@style/shareButtonStyle"/>
+        app:icon="@drawable/ic_baseline_share_24"
+        app:layout_constraintBottom_toBottomOf="@id/iv_like"
+        app:layout_constraintStart_toEndOf="@id/iv_like"
+        app:layout_constraintTop_toTopOf="@id/iv_like" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/iv_look"
@@ -100,14 +110,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/iv_like" />
 
-    <ImageView
-        android:id="@+id/iv_youtube"
-        android:layout_width="@dimen/video_width"
-        android:layout_height="@dimen/video_height"
-        android:layout_marginTop="@dimen/app_margin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_post_content"
-        app:srcCompat="@drawable/but_play_50" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
