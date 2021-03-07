@@ -85,7 +85,7 @@ class PostRepositoryFileImpl (
     }
 
     private fun sync() {
-        context.openFileOutput(filename, Context.MODE_PRIVATE/*APPEND*/).bufferedWriter().use {
+        context.openFileOutput(filename, Context.MODE_PRIVATE).bufferedWriter().use {
             it.write(gson.toJson(posts))
         }
     }
