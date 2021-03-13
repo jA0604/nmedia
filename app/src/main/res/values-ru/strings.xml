@@ -10,4 +10,6 @@
     <string name="enter_content">Введите текст</string>
     <string name="toolbar_title">НМедиа</string>
     <string name="tb_edit_post_subtitle">Вводд/Редактирование Поста</string>
+    <string name="post_not_empty">Пост не должен быть пустым</string>
+    <string name="str_hint_name_link">Ссылка на видео</string>
 </resources>

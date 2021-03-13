@@ -1,17 +1,12 @@
 package ru.netology.nmedia.screens
 
-import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
-import ru.netology.nmedia.RequestCode
 import ru.netology.nmedia.databinding.ItemPostBinding
 import ru.netology.nmedia.model.Post
 
@@ -20,7 +15,8 @@ class PostListAdapter(
     private val onPostShared: (Post) -> Unit,
     private val onPostRemoved: (Post) -> Unit,
     private val onPostEdited: (Post) -> Unit,
-    private val onVideoPlay: (Post) -> Unit
+    private val onVideoPlay: (Post) -> Unit,
+    private val onToFragment:(Post) -> Unit
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
     var posts: List<Post> = emptyList()
@@ -34,7 +30,8 @@ class PostListAdapter(
             onPostShared = onPostShared,
             onPostRemoved = onPostRemoved,
             onPostEdited = onPostEdited,
-            onVideoPlay = onVideoPlay
+            onVideoPlay = onVideoPlay,
+            onToFragment = onToFragment
         )
     }
 
@@ -50,7 +47,8 @@ class PostViewHolder(
     private val onPostShared: (Post) -> Unit,
     private val onPostRemoved: (Post) -> Unit,
     private val onPostEdited: (Post) -> Unit,
-    private val onVideoPlay: (Post) -> Unit
+    private val onVideoPlay: (Post) -> Unit,
+    private val onToFragment:(Post) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(post: Post) {
@@ -95,6 +93,10 @@ class PostViewHolder(
 
             ivYoutube.setOnClickListener {
                 onVideoPlay(post)
+            }
+
+            root.setOnClickListener {
+                onToFragment(post)
             }
         }
     }

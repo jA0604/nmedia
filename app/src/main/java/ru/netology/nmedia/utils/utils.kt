@@ -17,12 +17,14 @@ public fun numberToK(number: Int) =
 
 object AndroidUtils {
     fun View.hideKeyboard() {
-        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager ?: return
+        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
     }
 }
 
-object RequestCode {
+object KeyCode {
     const val EDIT_POST = 1001
     const val ADD_POST = 1002
+    const val KEY_EDIT_POST = "key_edit_post"
+
 }

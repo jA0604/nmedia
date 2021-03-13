@@ -23,9 +23,16 @@ class PostViewModel (application: Application) : AndroidViewModel(application) {
 
 //    private val repository = PostRepositoryMemoryImpl()
     private val repository = PostRepositoryFileImpl(application)
-    val contentEdit = MutableLiveData(blankPost)
+    var contentEdit = MutableLiveData<Post>()
     val data: LiveData<List<Post>>
         get() = repository.listLiveData
+
+    init {
+        val formatter = DateTimeFormatter.ofPattern("dd.MM.YYYY HH:mm")
+        val currentDate = Instant.now().atZone(ZoneId.systemDefault())
+
+        contentEdit = MutableLiveData(blankPost.copy(author = "New Author", datePublished = formatter.format(currentDate)))
+    }
 
     fun likeById(id: Long) = repository.likeById(id)
     fun shareById(id: Long) = repository.shareById(id)
@@ -46,13 +53,20 @@ class PostViewModel (application: Application) : AndroidViewModel(application) {
         } else contentEdit.value = contentEdit.value?.copy(content = text)
     }
 
+    fun changeLinkToVideo(link: String) {
+        val text = link.trim()
+        if (text == contentEdit.value?.linkToVideo) return
+        if (contentEdit.value?.id == 0L) {
+            contentEdit.value = contentEdit.value?.copy(linkToVideo = text)
+        } else contentEdit.value = contentEdit.value?.copy(linkToVideo = text)
+    }
+
     fun save() {
         contentEdit.value?.let {
             if (it.id == 0L) repository.create(it)
             else repository.update(it)
         }
         contentEdit.value = blankPost
-
     }
 
     fun edit(post: Post) {
