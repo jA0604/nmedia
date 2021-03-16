@@ -1,4 +1,4 @@
-package ru.netology.nmedia.screens
+package ru.netology.nmedia.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.ItemPostBinding
-import ru.netology.nmedia.model.Post
+import ru.netology.nmedia.model.dto.Post
 
 class PostListAdapter(
     private val onPostLiked: (Post) -> Unit,

@@ -1,4 +1,4 @@
-package ru.netology.nmedia.screens
+package ru.netology.nmedia.ui
 
 import android.os.Bundle
 import android.view.*
@@ -7,10 +7,8 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.AndroidUtils.hideKeyboard
-import ru.netology.nmedia.KeyCode
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.FragmentNewPostBinding
-import ru.netology.nmedia.model.Post
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 class NewPostFragment : Fragment() {

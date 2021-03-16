@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import ru.netology.nmedia.model.Post
+import ru.netology.nmedia.model.dto.Post
 
 class PostRepositoryFileImpl (
     private val context: Context
@@ -79,10 +79,10 @@ class PostRepositoryFileImpl (
         sync()
     }
 
-    override fun save(post: Post) {
-        posts = posts.filter { it.id != post.id }
-        sync()
-    }
+//    override fun save(post: Post) {
+//        posts = posts.filter { it.id != post.id }
+//        sync()
+//    }
 
     private fun sync() {
         context.openFileOutput(filename, Context.MODE_PRIVATE).bufferedWriter().use {

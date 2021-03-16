@@ -2,7 +2,7 @@ package ru.netology.nmedia.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import ru.netology.nmedia.model.Post
+import ru.netology.nmedia.model.dto.Post
 
 class PostRepositoryMemoryImpl : RepoPost {
     private var ids = 1L
@@ -110,7 +110,7 @@ class PostRepositoryMemoryImpl : RepoPost {
         mutableLiveData.value = posts
     }
 
-    override fun save(post: Post) {
-        posts = posts.filter { it.id != post.id }
-    }
+//    override fun save(post: Post) {
+//        posts = posts.filter { it.id != post.id }
+//    }
 }

@@ -1,4 +1,4 @@
-package ru.netology.nmedia.screens
+package ru.netology.nmedia.ui
 
 import android.content.Intent
 import android.net.Uri
@@ -9,10 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import ru.netology.nmedia.KeyCode
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.FragmentFeedBinding
-import ru.netology.nmedia.model.Post
+import ru.netology.nmedia.model.dto.Post
 import ru.netology.nmedia.viewmodel.PostViewModel
 
 class FeedFragment : Fragment() {

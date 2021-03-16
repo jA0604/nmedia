@@ -1,4 +1,4 @@
-package ru.netology.nmedia.screens
+package ru.netology.nmedia.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

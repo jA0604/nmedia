@@ -4,10 +4,11 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import ru.netology.nmedia.model.Post
+import ru.netology.nmedia.model.database.AppDatabase
+import ru.netology.nmedia.model.dto.Post
 import ru.netology.nmedia.repository.PostRepositoryFileImpl
-import ru.netology.nmedia.repository.PostRepositoryMemoryImpl
+import ru.netology.nmedia.repository.PostRepositorySqlImpl
+import ru.netology.nmedia.repository.RepoPost
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -22,7 +23,12 @@ class PostViewModel (application: Application) : AndroidViewModel(application) {
     )
 
 //    private val repository = PostRepositoryMemoryImpl()
-    private val repository = PostRepositoryFileImpl(application)
+//    private val repository = PostRepositoryFileImpl(application)
+
+    private val repository: RepoPost = PostRepositorySqlImpl(
+        AppDatabase.getInstance(application).postDao
+    )
+
     var contentEdit = MutableLiveData<Post>()
     val data: LiveData<List<Post>>
         get() = repository.listLiveData

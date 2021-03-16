@@ -1,16 +1,13 @@
-package ru.netology.nmedia.repository
+package ru.netology.nmedia.model.dao
 
-import androidx.lifecycle.LiveData
 import ru.netology.nmedia.model.dto.Post
 
-interface RepoPost {
-    val listLiveData: LiveData<List<Post>>
+interface PostDao {
+    fun getAll(): List<Post>
     fun likeById(id: Long)
     fun shareById(id: Long)
-
 //    fun save(post: Post)
     fun removeById(id: Long)
-
-    fun create(post: Post)
+    fun create(post: Post): Long
     fun update(post: Post)
 }
