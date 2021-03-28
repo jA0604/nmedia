@@ -28,3 +28,21 @@ object KeyCode {
     const val KEY_EDIT_POST = "key_edit_post"
 
 }
+
+enum class Action {
+    LIKE,
+    SHARE,
+    POST
+}
+
+object NotificationType {
+    const val BASIC_ACTION = 2001
+    const val ALARM = 2100
+}
+
+data class Like(
+    val userId: Long,
+    val userName: String,
+    val postId: Long,
+    val postAuthor: String,
+)
