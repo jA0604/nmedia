@@ -53,7 +53,7 @@ class FCMService : FirebaseMessagingService() {
             when(actionValue) {
                 Action.LIKE -> modifyPost(gson.fromJson(remoteMessage.data[content], Like::class.java), "liked" )
                 Action.SHARE -> modifyPost(gson.fromJson(remoteMessage.data[content], Like::class.java), "shared" )
-                else -> println(2)
+                Action.POST -> modifyPost(gson.fromJson(remoteMessage.data[content], Like::class.java), "posted" )
             }
         }
         catch (e: Exception) {
@@ -83,6 +83,7 @@ class FCMService : FirebaseMessagingService() {
                     content.userName,
                     whatDo,
                     content.postAuthor,
+                    content.datePublished
                 )
             )
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)

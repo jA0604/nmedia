@@ -45,4 +45,5 @@ data class Like(
     val userName: String,
     val postId: Long,
     val postAuthor: String,
+    val datePublished: String
 )

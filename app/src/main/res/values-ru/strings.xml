@@ -12,6 +12,5 @@
     <string name="tb_edit_post_subtitle">Вводд/Редактирование Поста</string>
     <string name="post_not_empty">Пост не должен быть пустым</string>
     <string name="str_hint_name_link">Ссылка на видео</string>
-    <string name="google_play_unavailable">Google Api Unavailable</string>
     <string name="imposible_operation">Несуществующая операция</string>
 </resources>
