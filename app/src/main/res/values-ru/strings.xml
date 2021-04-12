@@ -13,4 +13,7 @@
     <string name="post_not_empty">Пост не должен быть пустым</string>
     <string name="str_hint_name_link">Ссылка на видео</string>
     <string name="imposible_operation">Несуществующая операция</string>
+    <string name="error_loading">Что-то пошло не так. Повторите позже</string>
+    <string name="retry_loading">Повторите</string>
+    <string name="empty_posts">Список постов пуст.\nЕсли Вы создадите новый пост, он появится здесь</string>
 </resources>

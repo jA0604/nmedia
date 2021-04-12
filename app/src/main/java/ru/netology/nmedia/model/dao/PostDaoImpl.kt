@@ -18,8 +18,7 @@ class PostDaoImpl(
             ${PostColumns.COLUMN_DATE_PUBLISHED} TEXT NOT NULL,
             ${PostColumns.COLUMN_LIKED_BY_ME} BOOLEAN NOT NULL DEFAULT 0,
             ${PostColumns.COLUMN_LIKES} INTEGER NOT NULL DEFAULT 0,
-            ${PostColumns.COLUMN_SHARES} INTEGER NOT NULL DEFAULT 0,
-            ${PostColumns.COLUMN_LINK_TO_VIDEO} TEXT DEFAULT NULL
+            ${PostColumns.COLUMN_SHARES} INTEGER NOT NULL DEFAULT 0
         );
         """.trimIndent()
     }
@@ -34,7 +33,6 @@ class PostDaoImpl(
         const val COLUMN_LIKED_BY_ME = "likedByMe"
         const val COLUMN_LIKES = "likes"
         const val COLUMN_SHARES = "shares"
-        const val COLUMN_LINK_TO_VIDEO = "linkToVideo"
 
         val ALL_COLUMNS = arrayOf(
             COLUMN_ID,
@@ -43,8 +41,7 @@ class PostDaoImpl(
             COLUMN_DATE_PUBLISHED,
             COLUMN_LIKED_BY_ME,
             COLUMN_LIKES,
-            COLUMN_SHARES,
-            COLUMN_LINK_TO_VIDEO
+            COLUMN_SHARES
         )
     }
 
@@ -104,7 +101,6 @@ class PostDaoImpl(
             put(PostColumns.COLUMN_LIKED_BY_ME, if (post.likedByMe) 1 else 0)
             put(PostColumns.COLUMN_LIKES, post.likes)
             put(PostColumns.COLUMN_SHARES, post.shares)
-            put(PostColumns.COLUMN_LINK_TO_VIDEO, post.linkToVideo)
         }
         db.insert(PostColumns.TABLE, null, values)
 
@@ -134,7 +130,6 @@ class PostDaoImpl(
             put(PostColumns.COLUMN_LIKED_BY_ME, if (post.likedByMe) 1 else 0)
             put(PostColumns.COLUMN_LIKES, post.likes)
             put(PostColumns.COLUMN_SHARES, post.shares)
-            put(PostColumns.COLUMN_LINK_TO_VIDEO, post.linkToVideo)
         }
         db.update(PostColumns.TABLE, values, "${PostColumns.COLUMN_ID} = ?", arrayOf(post.id.toString()))
     }
@@ -145,11 +140,10 @@ class PostDaoImpl(
                 id = getLong(getColumnIndexOrThrow(PostColumns.COLUMN_ID)),
                 author = getString(getColumnIndexOrThrow(PostColumns.COLUMN_AUTHOR)),
                 content = getString(getColumnIndexOrThrow(PostColumns.COLUMN_CONTENT)),
-                datePublished = getString(getColumnIndexOrThrow(PostColumns.COLUMN_DATE_PUBLISHED)),
+                datePublished = getLong(getColumnIndexOrThrow(PostColumns.COLUMN_DATE_PUBLISHED)), //getString(getColumnIndexOrThrow(PostColumns.COLUMN_DATE_PUBLISHED)),
                 likedByMe = getInt(getColumnIndexOrThrow(PostColumns.COLUMN_LIKED_BY_ME)) != 0,
                 likes = getInt(getColumnIndexOrThrow(PostColumns.COLUMN_LIKES)),
-                shares = getInt(getColumnIndexOrThrow(PostColumns.COLUMN_SHARES)),
-                linkToVideo = getString(getColumnIndexOrThrow(PostColumns.COLUMN_LINK_TO_VIDEO))
+                shares = getInt(getColumnIndexOrThrow(PostColumns.COLUMN_SHARES))
             )
         }
     }
