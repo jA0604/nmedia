@@ -60,31 +60,10 @@
         android:singleLine="false"
         android:textColor="@color/colorPrimary_700"
         android:textSize="@dimen/app_text"
-        app:layout_constraintBottom_toTopOf="@id/ed_link_to_video"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_post_date"
-        tools:ignore="LabelFor" />
-
-    <EditText
-        android:id="@+id/ed_link_to_video"
-        style="@style/edit_text_add_note"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/app_margin"
-        android:autofillHints=""
-        android:gravity="start"
-        android:hint="@string/str_hint_name_link"
-        android:inputType="text"
-        android:lines="1"
-        android:padding="@dimen/padding_text"
-        android:textColor="@color/colorPrimary_700"
-        android:textSize="@dimen/app_text"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/fab_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ed_content_post"
+        app:layout_constraintTop_toBottomOf="@+id/tv_post_date"
         tools:ignore="LabelFor" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

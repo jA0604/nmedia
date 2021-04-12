@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
@@ -38,18 +39,25 @@ class FeedFragment : Fragment() {
             onPostShared = { ffViewModel.shareById(it.id) },
             onPostRemoved = { ffViewModel.removeById(it.id) },
             onPostEdited = { onToFragment(it) },
-            onVideoPlay = { videoPlay(it) },
             onToFragment = { onToFragment(it) }
 
             )
 
         ffBinding.rvPostConteiner.adapter = adapter
         ffViewModel.data.observe(this@FeedFragment) {
-            adapter.submitList(it)
+            adapter.submitList(it.posts)
+            ffBinding.pbProgress.isVisible = it.loading
+            ffBinding.wgErrorGroup.isVisible = it.error
+            ffBinding.tvEmptyText.isVisible = it.empty
+        }
+
+        ffBinding.btnRetry.setOnClickListener {
+            ffViewModel.loadPosts()
         }
 
         ffBinding.fabAddPost.setOnClickListener {
-            findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
+            if (ffViewModel.data.value?.error == false)
+                findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
         }
 
 
@@ -57,14 +65,10 @@ class FeedFragment : Fragment() {
             if (it.id == 0L) return@observe
 
         }
-    }
 
-    fun videoPlay(post: Post) {
-        val intent = Intent().apply {
-            action = Intent.ACTION_VIEW
-            data = Uri.parse(post.linkToVideo)
+        ffViewModel.postChanged.observe(viewLifecycleOwner) {
+            ffViewModel.loadPosts()
         }
-        startActivity(intent)
     }
 
     fun onToFragment(post: Post) {

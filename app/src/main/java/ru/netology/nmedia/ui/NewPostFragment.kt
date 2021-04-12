@@ -37,8 +37,7 @@ class NewPostFragment : Fragment() {
 
         npfBinding.edContentPost.setText(npfViewModel.contentEdit.value?.content)
         npfBinding.tvAuthor.setText(npfViewModel.contentEdit.value?.author)
-        npfBinding.tvPostDate.setText(npfViewModel.contentEdit.value?.datePublished)
-        npfBinding.edLinkToVideo.setText(npfViewModel.contentEdit.value?.linkToVideo)
+        npfBinding.tvPostDate.setText(npfViewModel.contentEdit.value?.datePublished.toString()) //salfksdalkjlkjl
 
 
         npfBinding.edContentPost.addTextChangedListener(object : TextWatcher {
@@ -57,11 +56,14 @@ class NewPostFragment : Fragment() {
             } else {
                 val content = npfBinding.edContentPost.text.toString()
                 npfViewModel.changeContent(content)
-                npfViewModel.changeLinkToVideo(npfBinding.edLinkToVideo.text.toString())
                 npfViewModel.save()
                 it.hideKeyboard()
-                findNavController().popBackStack()
             }
+        }
+
+        npfViewModel.postCreated.observe(viewLifecycleOwner) {
+            npfViewModel.loadPosts()
+            findNavController().popBackStack()
         }
     }
 

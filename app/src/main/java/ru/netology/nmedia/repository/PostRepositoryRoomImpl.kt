@@ -20,8 +20,7 @@ class PostRepositoryRoomImpl(
                     datePublished = it.datePublished,
                     likedByMe = it.likedByMe,
                     likes = it.likes,
-                    shares = it.shares,
-                    linkToVideo = it.linkToVideo
+                    shares = it.shares
                 )
         }
     }

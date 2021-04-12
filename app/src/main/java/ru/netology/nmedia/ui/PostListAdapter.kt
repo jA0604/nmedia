@@ -15,7 +15,6 @@ class PostListAdapter(
     private val onPostShared: (Post) -> Unit,
     private val onPostRemoved: (Post) -> Unit,
     private val onPostEdited: (Post) -> Unit,
-    private val onVideoPlay: (Post) -> Unit,
     private val onToFragment:(Post) -> Unit
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
@@ -30,7 +29,6 @@ class PostListAdapter(
             onPostShared = onPostShared,
             onPostRemoved = onPostRemoved,
             onPostEdited = onPostEdited,
-            onVideoPlay = onVideoPlay,
             onToFragment = onToFragment
         )
     }
@@ -47,7 +45,6 @@ class PostViewHolder(
     private val onPostShared: (Post) -> Unit,
     private val onPostRemoved: (Post) -> Unit,
     private val onPostEdited: (Post) -> Unit,
-    private val onVideoPlay: (Post) -> Unit,
     private val onToFragment:(Post) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -55,10 +52,8 @@ class PostViewHolder(
         with(binding) {
             ivAvatar.setImageResource(R.drawable.ic_netology_original)
             tvAuthor.setText(post.author)
-            tvPostDate.setText(post.datePublished)
+            tvPostDate.setText(post.datePublished.toString()) //tostring
             tvPostContent.setText(post.content)
-
-            ivYoutube.visibility = if (post.linkToVideo.isBlank()) View.GONE else View.VISIBLE
 
             ivLike.isChecked = post.likedByMe
             ivLike.text = post.likes.toString()
@@ -89,10 +84,6 @@ class PostViewHolder(
                 }
                 popupMenu.show()
 
-            }
-
-            ivYoutube.setOnClickListener {
-                onVideoPlay(post)
             }
 
             root.setOnClickListener {

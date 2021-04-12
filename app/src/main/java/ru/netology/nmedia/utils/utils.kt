@@ -4,6 +4,9 @@ import android.content.Context
 import android.renderscript.ScriptGroup
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 
 public fun numberToK(number: Int) =
         when {
@@ -47,3 +50,25 @@ data class Like(
     val postAuthor: String,
     val datePublished: String
 )
+
+class SingleLiveEvent<T> : MutableLiveData<T>() {
+    private var pending = false
+
+    override fun observe(owner: LifecycleOwner, observer: Observer<in T?>) {
+        require (!hasActiveObservers()) {
+            error("Multiple observers registered but only one will be notified of changes.")
+        }
+
+        super.observe(owner) {
+            if (pending) {
+                pending = false
+                observer.onChanged(it)
+            }
+        }
+    }
+
+    override fun setValue(t: T?) {
+        pending = true
+        super.setValue(t)
+    }
+}

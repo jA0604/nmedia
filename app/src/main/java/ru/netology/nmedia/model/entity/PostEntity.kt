@@ -10,11 +10,10 @@ data class PostEntity(
     val id: Long = 0L,
     val author: String,
     val content: String,
-    val datePublished: String,
+    val datePublished: Long, //String,
     val likedByMe: Boolean = false,
     val likes: Int = 0,
-    val shares: Int = 0,
-    val linkToVideo: String = ""
+    val shares: Int = 0
 ) {
     fun toDto() = Post(
         id = id,
@@ -23,8 +22,7 @@ data class PostEntity(
         datePublished = datePublished,
         likedByMe = likedByMe,
         likes = likes,
-        shares = shares,
-        linkToVideo = linkToVideo
+        shares = shares
     )
 
     companion object {
@@ -35,8 +33,7 @@ data class PostEntity(
             datePublished = dto.datePublished,
             likedByMe = dto.likedByMe,
             likes = dto.likes,
-            shares = dto.shares,
-            linkToVideo = dto.linkToVideo
+            shares = dto.shares
         )
     }
 }
