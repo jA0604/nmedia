@@ -11,6 +11,7 @@ import ru.netology.nmedia.model.dto.Post
 import ru.netology.nmedia.utils.BASE_URL
 import java.util.concurrent.TimeUnit
 
+const val BASE_URL = "http://10.10.1.120:9999"
 
 class PostRepositorySpringImpl : PostRepository {
     private val client = OkHttpClient.Builder()
