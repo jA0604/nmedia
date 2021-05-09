@@ -52,7 +52,7 @@ class PostViewHolder(
         with(binding) {
             ivAvatar.setImageResource(R.drawable.ic_netology_original)
             tvAuthor.setText(post.author)
-            tvPostDate.setText(post.datePublished.toString()) //tostring
+            tvPostDate.setText(post.datePublished.toString())
             tvPostContent.setText(post.content)
 
             ivLike.isChecked = post.likedByMe
