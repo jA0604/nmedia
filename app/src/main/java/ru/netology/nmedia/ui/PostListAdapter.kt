@@ -3,12 +3,15 @@ package ru.netology.nmedia.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.ItemPostBinding
 import ru.netology.nmedia.model.dto.Post
+import ru.netology.nmedia.repository.BASE_URL
 
 class PostListAdapter(
     private val onPostLiked: (Post) -> Unit,
@@ -36,6 +39,7 @@ class PostListAdapter(
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = getItem(position)
         holder.bind(post)
+
     }
 }
 
@@ -66,6 +70,13 @@ class PostViewHolder(
                 onPostShared(post)
             }
 
+            Glide.with(ivAvatar)
+                .load("${BASE_URL}/avatars/${post.authorAvatar}")
+                .placeholder(R.drawable.ic_loading_100dp)
+                .error(R.drawable.ic_error_100dp)
+                .timeout(10_000)
+                .into(ivAvatar)
+
             ivMore.setOnClickListener {
                 val popupMenu = androidx.appcompat.widget.PopupMenu(it.context, it)
                 popupMenu.inflate(R.menu.menu_post_options)
@@ -83,6 +94,8 @@ class PostViewHolder(
                     }
                 }
                 popupMenu.show()
+
+
 
             }
 
