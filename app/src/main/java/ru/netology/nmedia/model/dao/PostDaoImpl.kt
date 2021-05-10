@@ -140,7 +140,8 @@ class PostDaoImpl(
                 id = getLong(getColumnIndexOrThrow(PostColumns.COLUMN_ID)),
                 author = getString(getColumnIndexOrThrow(PostColumns.COLUMN_AUTHOR)),
                 content = getString(getColumnIndexOrThrow(PostColumns.COLUMN_CONTENT)),
-                datePublished = getLong(getColumnIndexOrThrow(PostColumns.COLUMN_DATE_PUBLISHED)), //getString(getColumnIndexOrThrow(PostColumns.COLUMN_DATE_PUBLISHED)),
+                datePublished = getLong(getColumnIndexOrThrow(PostColumns.COLUMN_DATE_PUBLISHED)),
+                //getString(getColumnIndexOrThrow(PostColumns.COLUMN_DATE_PUBLISHED)),
                 likedByMe = getInt(getColumnIndexOrThrow(PostColumns.COLUMN_LIKED_BY_ME)) != 0,
                 likes = getInt(getColumnIndexOrThrow(PostColumns.COLUMN_LIKES)),
                 shares = getInt(getColumnIndexOrThrow(PostColumns.COLUMN_SHARES))
