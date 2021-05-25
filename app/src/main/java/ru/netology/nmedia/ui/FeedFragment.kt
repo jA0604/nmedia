@@ -49,10 +49,20 @@ class FeedFragment : Fragment() {
             ffBinding.pbProgress.isVisible = it.loading
             ffBinding.wgErrorGroup.isVisible = it.error
             ffBinding.tvEmptyText.isVisible = it.empty
+
+            ffBinding.wgHttp400Group.isVisible = it.httpError400
+            ffBinding.wgHttp500Group.isVisible = it.httpError500
         }
 
         ffBinding.btnRetry.setOnClickListener {
             ffViewModel.loadPosts()
+        }
+        ffBinding.btnHttp500Retry.setOnClickListener {
+            ffViewModel.loadPosts()
+        }
+        ffBinding.btnHttp400Ok.setOnClickListener {
+            //завершение программы
+            activity?.finish()
         }
 
         ffBinding.fabAddPost.setOnClickListener {

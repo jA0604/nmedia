@@ -1,17 +1,15 @@
 package ru.netology.nmedia.ui
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import ru.netology.nmedia.SERVER_URL
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.ItemPostBinding
 import ru.netology.nmedia.model.dto.Post
-import ru.netology.nmedia.repository.BASE_URL
 
 class PostListAdapter(
     private val onPostLiked: (Post) -> Unit,
@@ -71,7 +69,7 @@ class PostViewHolder(
             }
 
             Glide.with(ivAvatar)
-                .load("${BASE_URL}/avatars/${post.authorAvatar}")
+                .load("${SERVER_URL}/avatars/${post.authorAvatar}")
                 .placeholder(R.drawable.ic_loading_100dp)
                 .error(R.drawable.ic_error_100dp)
                 .timeout(10_000)

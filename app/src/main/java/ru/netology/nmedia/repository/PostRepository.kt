@@ -13,7 +13,7 @@ interface PostRepository {
     fun getAllAsync(callback: GetAllCallback)
     interface GetAllCallback {
         fun onSuccess(posts: List<Post>) {}
-        fun onError(e: Exception) {}
+        fun onError(code: Int, e: Exception) {}
     }
 
     fun likeByIdAsync(id: Long, callback: ByIdCallback)
@@ -26,6 +26,6 @@ interface PostRepository {
 
     interface ByIdCallback {
         fun onSuccess() {}
-        fun onError(e: Exception) {}
+        fun onError(code: Int, e: Exception) {}
     }
 }
