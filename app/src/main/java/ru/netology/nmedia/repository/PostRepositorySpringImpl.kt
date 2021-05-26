@@ -98,18 +98,16 @@ class PostRepositorySpringImpl : PostRepository {
                 call: retrofit2.Call<List<Post>>,
                 response: retrofit2.Response<List<Post>>
             ) {
-                when (response.code()) {
-                    in 200..299 -> {
-                        callback.onSuccess(response.body() ?: throw RuntimeException("body is null") )
-                    }
-                    in 400..499 -> {
-                        Log.e("HTTPERROR", "${response.code()}  " + response.message() + response.raw().request.url)
-                        callback.onError(response.code(), RuntimeException(response.message()))
-                    }
-                    in 500..599 -> {
-                        Log.e("HTTPERROR", "${response.code()}  " + response.message() + response.raw().request.url)
-                        callback.onError(response.code(), RuntimeException(response.message()))
-                    }
+                if (response.isSuccessful) {
+                    callback.onSuccess(response.body() ?: throw RuntimeException("body is null"))
+                } else {
+
+                    Log.e(
+                        "HTTPERROR",
+                        "${response.code()}  " + response.message() + response.raw().request.url
+                    )
+                    callback.onError(response.code(), RuntimeException(response.message()))
+
                 }
             }
 
@@ -117,8 +115,7 @@ class PostRepositorySpringImpl : PostRepository {
                 callback.onError(0, RuntimeException(t.message))
             }
 
-        }
-        )
+        })
     }
 
     override fun likeByIdAsync(id: Long, callback: PostRepository.ByIdCallback) {
@@ -143,23 +140,20 @@ class PostRepositorySpringImpl : PostRepository {
 
     override fun dislikeByIdAsync(id: Long, callback: PostRepository.ByIdCallback) {
 
-        PostsApi.retrofitService.dislikeById(id).enqueue(object: retrofit2.Callback<Post> {
+        PostsApi.retrofitService.dislikeById(id).enqueue(object : retrofit2.Callback<Post> {
             override fun onResponse(
                 call: retrofit2.Call<Post>,
                 response: retrofit2.Response<Post>
             ) {
-                when (response.code()) {
-                    in 200..299 -> {
-                        callback.onSuccess()
-                    }
-                    in 400..499 -> {
-                        Log.e("HTTPERROR", "${response.code()}  " + response.message() + response.raw().request.url)
-                        callback.onError(response.code(), RuntimeException(response.message()))
-                    }
-                    in 500..599 -> {
-                        Log.e("HTTPERROR", "${response.code()}  " + response.message() + response.raw().request.url)
-                        callback.onError(response.code(), RuntimeException(response.message()))
-                    }
+                if (response.isSuccessful) {
+
+                    callback.onSuccess()
+                } else {
+                    Log.e(
+                        "HTTPERROR",
+                        "${response.code()}  " + response.message() + response.raw().request.url
+                    )
+                    callback.onError(response.code(), RuntimeException(response.message()))
                 }
 
             }
@@ -177,27 +171,17 @@ class PostRepositorySpringImpl : PostRepository {
                 call: retrofit2.Call<Unit>,
                 response: retrofit2.Response<Unit>
             ) {
-
-                when (response.code()) {
-                    in 200..299 -> {
-                        callback.onSuccess()
-                    }
-                    in 400..499 -> {
-                        Log.e("HTTPERROR", "${response.code()}  " + response.message() + response.raw().request.url)
-                        callback.onError(response.code(), RuntimeException(response.message()))
-                    }
-                    in 500..599 -> {
-                        Log.e("HTTPERROR", "${response.code()}  " + response.message() + response.raw().request.url)
-                        callback.onError(response.code(), RuntimeException(response.message()))
-                    }
-                }
-
-
                 if (response.isSuccessful) {
+
                     callback.onSuccess()
                 } else {
+                    Log.e(
+                        "HTTPERROR",
+                        "${response.code()}  " + response.message() + response.raw().request.url
+                    )
                     callback.onError(response.code(), RuntimeException(response.message()))
                 }
+
             }
 
             override fun onFailure(call: retrofit2.Call<Unit>, t: Throwable) {
@@ -212,19 +196,17 @@ class PostRepositorySpringImpl : PostRepository {
                 call: retrofit2.Call<Post>,
                 response: retrofit2.Response<Post>
             ) {
-                when (response.code()) {
-                    in 200..299 -> {
-                        callback.onSuccess()
-                    }
-                    in 400..499 -> {
-                        Log.e("HTTPERROR", "${response.code()}  " + response.message() + response.raw().request.url)
-                        callback.onError(response.code(), RuntimeException(response.message()))
-                    }
-                    in 500..599 -> {
-                        Log.e("HTTPERROR", "${response.code()}  " + response.message() + response.raw().request.url)
-                        callback.onError(response.code(), RuntimeException(response.message()))
-                    }
+                if (response.isSuccessful) {
+
+                    callback.onSuccess()
+                } else {
+                    Log.e(
+                        "HTTPERROR",
+                        "${response.code()}  " + response.message() + response.raw().request.url
+                    )
+                    callback.onError(response.code(), RuntimeException(response.message()))
                 }
+
             }
 
             override fun onFailure(call: retrofit2.Call<Post>, t: Throwable) {
@@ -242,20 +224,15 @@ class PostRepositorySpringImpl : PostRepository {
                 call: retrofit2.Call<Post>,
                 response: retrofit2.Response<Post>
             ) {
-                when (response.code()) {
-                    in 200..299 -> {
-                        callback.onSuccess()
-                    }
-                    in 400..499 -> {
-                        Log.e("HTTPERROR", "${response.code()}  " + response.message() + response.raw().request.url)
-                        callback.onError(response.code(), RuntimeException(response.message()))
-                    }
-                    in 500..599 -> {
-                        Log.e("HTTPERROR", "${response.code()}  " + response.message() + response.raw().request.url)
-                        callback.onError(response.code(), RuntimeException(response.message()))
-                    }
+                if (response.isSuccessful) {
+                    callback.onSuccess()
+                } else {
+                    Log.e(
+                        "HTTPERROR",
+                        "${response.code()}  " + response.message() + response.raw().request.url
+                    )
+                    callback.onError(response.code(), RuntimeException(response.message()))
                 }
-
             }
 
             override fun onFailure(call: retrofit2.Call<Post>, t: Throwable) {
@@ -264,5 +241,4 @@ class PostRepositorySpringImpl : PostRepository {
 
         })
     }
-
 }
