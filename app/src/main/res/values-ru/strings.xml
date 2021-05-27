@@ -16,4 +16,7 @@
     <string name="error_loading">Что-то пошло не так. Повторите позже</string>
     <string name="retry_loading">Повторите</string>
     <string name="empty_posts">Список постов пуст.\nЕсли Вы создадите новый пост, он появится здесь</string>
+    <string name="str_server_error_500">Ошибка сервера. Повторите попытку позже</string>
+    <string name="str_error_400">Ошибка в запросе.</string>
+    <string name="btn_str_close">Выйти</string>
 </resources>

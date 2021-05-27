@@ -73,3 +73,5 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
         super.setValue(t)
     }
 }
+
+const val SERVER_URL = BuildConfig.BASE_URL

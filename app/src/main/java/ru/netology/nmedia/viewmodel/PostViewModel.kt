@@ -46,7 +46,6 @@ class PostViewModel (application: Application) : AndroidViewModel(application) {
     val postChanged: LiveData<Unit>
         get() = _postChanged
 
-
     init {
         loadPosts()
     }
@@ -57,8 +56,13 @@ class PostViewModel (application: Application) : AndroidViewModel(application) {
             override fun onSuccess(posts: List<Post>) {
                 _data.postValue(FeedModel(posts = posts, empty = posts.isEmpty()))
             }
-            override fun onError(e: Exception) {
+            override fun onError(code: Int, e: Exception) {
                 _data.postValue(FeedModel(error = true))
+                if (code in 400..499) {
+                    _data.postValue(FeedModel(httpError400 = true))
+                } else if (code in 500..599) {
+                    _data.postValue(FeedModel(httpError500 = true))
+                }
             }
         })
     }
@@ -73,8 +77,13 @@ class PostViewModel (application: Application) : AndroidViewModel(application) {
                     _postChanged.postValue(Unit)
                 }
 
-                override fun onError(e: Exception) {
+                override fun onError(code: Int, e: Exception) {
                     _data.postValue(_data.value?.copy(posts = old))
+                    if (code in 400..499) {
+                        _data.postValue(FeedModel(httpError400 = true))
+                    } else if (code in 500..599) {
+                        _data.postValue(FeedModel(httpError500 = true))
+                    }
                 }
             })
         else repository.likeByIdAsync(id, object : PostRepository.ByIdCallback {
@@ -82,8 +91,13 @@ class PostViewModel (application: Application) : AndroidViewModel(application) {
                 _postChanged.postValue(Unit)
             }
 
-            override fun onError(e: Exception) {
+            override fun onError(code: Int, e: Exception) {
                 _data.postValue(_data.value?.copy(posts = old))
+                if (code in 400..499) {
+                    _data.postValue(FeedModel(httpError400 = true))
+                } else if (code in 500..599) {
+                    _data.postValue(FeedModel(httpError500 = true))
+                }
             }
         })
 
@@ -97,8 +111,13 @@ class PostViewModel (application: Application) : AndroidViewModel(application) {
                     _postChanged.postValue(Unit)
                 }
 
-                override fun onError(e: Exception) {
+                override fun onError(code: Int, e: Exception) {
                     _data.postValue(_data.value?.copy(posts = old))
+                    if (code in 400..499) {
+                        _data.postValue(FeedModel(httpError400 = true))
+                    } else if (code in 500..599) {
+                        _data.postValue(FeedModel(httpError500 = true))
+                    }
                 }
             })
     }
@@ -115,10 +134,15 @@ class PostViewModel (application: Application) : AndroidViewModel(application) {
 
             }
 
-            override fun onError(e: Exception) {
+            override fun onError(code: Int, e: Exception) {
                 _data.postValue(_data.value?.copy(posts = old))
+                if (code in 400..499) {
+                    _data.postValue(FeedModel(httpError400 = true))
+                } else if (code in 500..599) {
+                    _data.postValue(FeedModel(httpError500 = true))
+                }
             }
-        })
+       })
 
 
     }
@@ -137,12 +161,15 @@ class PostViewModel (application: Application) : AndroidViewModel(application) {
 
             repository.saveAsync(it, object : PostRepository.ByIdCallback {
                 override fun onSuccess() {
-//                    repository.saveAsync(it, )
                     _postCreated.postValue(Unit)
                 }
 
-                override fun onError(e: Exception) {
-
+                override fun onError(code: Int, e: Exception) {
+                    if (code in 400..499) {
+                        _data.postValue(FeedModel(httpError400 = true))
+                    } else if (code in 500..599) {
+                        _data.postValue(FeedModel(httpError500 = true))
+                    }
                 }
             })
         }
